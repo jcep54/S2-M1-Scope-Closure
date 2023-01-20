@@ -30,11 +30,12 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+  counter 1 will save the var's memory and increment, counter 2 will not save the memory from previous invocation
   2. Which of the two uses a closure? How can you tell?
-  
+  counter 1 uses closure bc the var is declared within the function and it has a function within 
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+     count 1 is better if you want to save the data each time the function is invoked. count 2 is better if the memory doesn't need to be stored
 */
 
 // counter1 code
@@ -65,9 +66,9 @@ NOTE: This will be a callback function for the tasks below
 */
 
 function inning(/*Code Here*/){
-    /*Code Here*/
+    return Math.floor(Math.random() * 3)
 }
-
+console.log(inning())
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -83,10 +84,18 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(scores,inning){
+  let homeScore = 0;
+  let awayScore = 0;
+  for (let i = 0; i < inning; i++){
+    homeScore += scores();
+    awayScore += scores();
+    
+  } return {
+    Home: homeScore,
+    Away: awayScore
+  }
 }
-
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
@@ -101,11 +110,18 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inningCB) {
+  return {
+    Home: inningCB(),
+    Away: inningCB()
+  }
+
 
 }
-
+console.log(getInningScore(inning))
+console.log(getInningScore(inning))
+console.log(getInningScore(inning))
+console.log(getInningScore(inning))
 
 /* STRETCH: ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
